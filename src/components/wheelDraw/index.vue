@@ -102,7 +102,6 @@ export default {
     const paddingTop = this.prizePaddingTop;
     this.degValue = this.initDeg;
     this.itemTransformOrigin = "50%" + 0.5 * widthNum + widthUnit;
-    console.log("itemTransformOrigin", this.itemTransformOrigin);
     this.prizeWidthData = isNaN(prizeWidth)
       ? this._calculatePrizeWidth()
       : prizeWidth;
@@ -120,11 +119,8 @@ export default {
       return -1;
     },
     start() {
-      console.log(111);
       if (this.onRunning) return;
-      console.log(222);
       if (this.rotNum >= this.rotTimes) {
-        console.log(3);
         this.onTimesUp();
         return;
       }
@@ -132,7 +128,6 @@ export default {
         throw new Error("请传入抽奖结果名称：prizeName");
       }
       const index = this.getIndexByName(this.prizeName);
-      console.log(4, index);
       if (index === -1) {
         throw new Error(
           "抽奖结果名称与抽奖列表配置项不匹配，未找到名称为" +
@@ -143,9 +138,7 @@ export default {
       this.rotNum += 1;
       this.onRunning = true;
       const degree = (index + (index + 1)) * (360 / (this.count * 2));
-      console.log("degree", degree);
       const degValue = 360 * this.count * this.rotNum - degree;
-      console.log("degValue", degValue);
       this.degValue = degValue;
       this.onStart(this.prizeName, this.rotNum);
       setTimeout(() => {
@@ -189,7 +182,6 @@ export default {
   border-radius: 50%;
   width: inherit;
   height: inherit;
-  // 该属性很关键决定了转盘的过渡动态效果
   transition: all 6s ease;
 }
 
